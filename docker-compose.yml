@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  scoreboard.web:
+    build:
+      context: .
+    environment:
+      - RUNMIGRATIONS=0
+      - WAITFOR=scoreboard.redis:6379
+    ports:
+      - "80:8000"
+    restart: on-failure
+    volumes:
+      - ".:/opt/scoreboard"
+  scoreboard.redis:
+    image: redis:6-alpine

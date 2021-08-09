@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Scoreboard</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'score/home.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  {{ js_vars|json_script:'vars' }}
+  <script src="{% static 'jquery.min.js' %}"></script>
+  <script src="{% static 'jquery.form.min.js' %}"></script>
+  <script src="{% static 'score/home.js' %}"></script>
+</head>
+<body>
+  <div class="page">
+    <div class="scoreboard">
+      {% for player in sb.players %}
+        <div class="player">
+          <form method="post" action="{% url 'decrease' sbid=sb.sbid pid=player.pid amount=step %}">
+            <button type="submit" name="decrease">−</button>
+          </form>
+          <span class="scorebox">
+            <span id="s{{ sb.sbid }}p{{ player.pid }}" class="score">{{ player }}</span>
+          </span>
+          <form method="post" action="{% url 'increase' sbid=sb.sbid pid=player.pid amount=step %}">
+            <button type="submit" name="increase">+</button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="actions">
+      <form method="post" action="{% url 'reset' sbid=sb.sbid %}">
+        <button type="submit" name="reset" class="material-icons">restart_alt</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+@font-face {
+    font-family: 'Segment7';
+    src: url('Segment7Standard.woff2') format('woff2'),
+         url('Segment7Standard.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: block;
+}
+
+body {
+    background: #25272c;
+    user-select: none;
+}
+
+body, button {
+    color: #ddd8dd;
+    cursor: default;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    background: #1a1c20;
+    border: none;
+    border-radius: 1vw;
+    font-size: 8vw;
+    text-align: center;
+    width: 8vw;
+}
+button:active {
+    color: white;
+}
+button.material-icons {
+    font-size: 8vw;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100vh;
+}
+.scoreboard {
+    display: flex;
+    justify-content: space-evenly;
+}
+.scoreboard .player {
+    display: flex;
+}
+.scoreboard .player form {
+    display: flex;
+}
+.scoreboard .player button[name="increase"] {
+    border-radius: 0 1vw 1vw 0;
+    color: #80f080;
+}
+.scoreboard .player button[name="increase"]:active {
+    color: #18f018;
+}
+.scoreboard .player button[name="decrease"] {
+    border-radius: 1vw 0 0 1vw;
+    color: #f08080;
+}
+.scoreboard .player button[name="decrease"]:active {
+    color: #f01818;
+}
+.scoreboard .player .scorebox {
+    border: 1vw solid #1a1c20;
+    font-family: Segment7, monospace;
+    padding: 3vw 3vw 0;
+    position: relative;
+    font-size: 16vw;
+}
+.scoreboard .player .scorebox .score {
+    position: relative;
+    z-index: 1;
+}
+.scoreboard .player .scorebox::after {
+    color: #1a1c20;
+    content: "88";
+    position: absolute;
+        left: 3vw;
+        top: 3vw;
+}
+.actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+@media (max-width: 600px) {
+    button {
+        border-radius: 2vw;
+        font-size: 16vw;
+        width: 16vw;
+    }
+    button.material-icons {
+        font-size: 16vw;
+    }
+    .scoreboard {
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    .scoreboard .player {
+        justify-content: center;
+    }
+    .scoreboard .player button[name="increase"] {
+        border-radius: 0 2vw 2vw 0;
+    }
+    .scoreboard .player button[name="decrease"] {
+        border-radius: 2vw 0 0 2vw;
+    }
+    .scoreboard .player .scorebox {
+        border-width: 2vw;
+        padding: 6vw 6vw 0;
+        font-size: 32vw;
+    }
+    .scoreboard .player .scorebox::after {
+        left: 6vw;
+        top: 6vw;
+    }
+    .actions {
+        flex-basis: 32vw;
+    }
+}

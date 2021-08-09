@@ -1,0 +1,6 @@
+*.egg-info
+__pycache__
+/db.sqlite3
+/docker-compose.override.yml
+/node_modules
+/static
