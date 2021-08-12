@@ -1,6 +1,7 @@
 {
 	"short_name": "Scoreboard",
 	"name": "Scoreboard",
+	"description": "Scoreboard",
 	"start_url": ".",
 	"display": "standalone",
 	"background_color": "#25272c",
