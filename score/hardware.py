@@ -35,9 +35,10 @@ class DigitDisplay:
     }
 
     def __init__(self, clock_pin=25, latch_pin=23, data_pin=24):
-        self.clock = DigitalOutputDevice(clock_pin, active_high=False)
-        self.latch = DigitalOutputDevice(latch_pin, active_high=False)
-        self.data = DigitalOutputDevice(data_pin, active_high=False)
+        self.clock = DigitalOutputDevice(clock_pin)
+        self.latch = DigitalOutputDevice(latch_pin)
+        self.data = DigitalOutputDevice(data_pin)
+        self.value = '0000'
 
     @property
     def value(self):
@@ -46,18 +47,19 @@ class DigitDisplay:
     @value.setter
     def value(self, value):
         self._value = value
+        self._display_value()
 
     def _display_value(self):
-        for digit in self.value:
+        for digit in reversed(self.value):
             segs = self.digits.get(digit, 0)
 
             for bit in range(8):
-                self.clock.active_high = False
+                self.clock.off()
                 self.data.value = segs & 1 << (7 - bit)
-                self.clock.active_high = True
+                self.clock.on()
 
-        self.latch.active_high = False
-        self.latch.active_high = True
+        self.latch.off()
+        self.latch.on()
 
 
 try:
